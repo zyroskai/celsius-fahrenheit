@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Currency Converter</title>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A stylish and responsive currency converter">
+  <meta name="keywords" content="currency, converter, exchange rate, USD, INR, EUR">
+  <meta name="author" content="Your Name">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+ 
+<style>
+    * {
+      text-align: center;
+      font-size:20px;
+      font-family:'Poppins', sans-serif;
+    }
+    .converter-row 
+    {
+      display: flex;
+      justify-content: center;
+      margin: 20px auto; 
+    }
+.converter-row input 
+  {
+   padding : 10px 10px 10px 10px;
+   border-radius: 0 10px 10px 0;
+   width: 200px;
+   }
+   .converter-row select
+  {
+   padding : 10px 10px 10px 10px;
+   border-radius: 10px 0 0 10px ;
+
+  }
+</style>
+</head>
+<body>
+<img src= "https://i.pinimg.com/736x/3b/d7/68/3bd768a616a80472c53173fdb71af9f0.jpg" style="width:600px;">
+ <div class="converter-row">
+<select id="fromUnit">
+  <option value="C">Celsius</option>
+  <option value="F">Fahrenheit</option>
+</select>
+<input id="fromValue" type="number" value="number" placeholder="Enter value">
+
+<h2 style="padding:0px 18px 0px 18px;"> = </h2>
+
+<select id="toUnit">
+   <option value="C">Celsius</option>
+  <option value="F">Fahrenheit</option>
+</select><input id="toValue" type="number" value="number" placeholder="Result" readonly>
+<br>
+</div>
+</body>
+<script>
+function convert()
+{
+    let fromUnit = document.getElementById("fromUnit").value;
+    let toUnit = document.getElementById("toUnit").value;
+    let fromValue = parseFloat(document.getElementById("fromValue").value);  
+      
+      if(isNaN(fromValue))
+      {
+      document.getElementById("toValue").value=null;
+      return;
+      }
+
+     let result; 
+
+     if (fromUnit === 'C' && toUnit === 'F')
+     {
+     result = (fromValue * 9/5) + 32;
+     } 
+     else if (fromUnit === 'F' && toUnit === 'C')
+     {
+      result = (fromValue - 32) * 5/9;
+     }
+      else
+     {
+     result = fromValue;
+     }
+     
+     document.getElementById("toValue").value = result.toFixed(2);
+}
+    document.getElementById("fromUnit").addEventListener("change", convert);
+    document.getElementById("toUnit").addEventListener("change", convert);
+    document.getElementById("fromValue").addEventListener("input", convert);
+</script>
+</html>
